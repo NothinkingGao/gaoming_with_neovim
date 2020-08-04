@@ -48,6 +48,10 @@ Plug 'fatih/vim-go' , { 'for': ['go', 'vim-plug'], 'tag': '*' }
 " 错误提示
 Plug 'dense-analysis/ale'
 
+" Optional:
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+
 " Python自动完成支持
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -62,11 +66,10 @@ Plug 'MarcWeber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
 Plug 'garbas/vim-snipmate'
 
-" Optional:
-Plug 'SirVer/ultisnips'
-"Plug 'honza/vim-snippets'
+" 注释
+Plug 'tomtom/tcomment_vim'
 
-" Start Screen
+"Start Screen
 Plug 'mhinz/vim-startify'
 
 " 函数跳转
@@ -93,7 +96,8 @@ Plug 'denstiny/Terslation'
 Plug 'voldikss/vim-floaterm'
 call plug#end()
 
-
+" Set <LEADER> as <SPACE>, ; as :
+let mapleader=" "
 
 " ===
 " === 装饰我的vim
@@ -221,8 +225,9 @@ set autoread
 syntax on
 set scrolloff=3
 set cursorline
-set noexpandtab
-set tabstop=2
+set tabstop=4
+set shiftwidth=4
+set expandtab
 set shiftwidth=2
 set softtabstop=2
 set autoindent
@@ -232,7 +237,7 @@ noremap W 5w
 noremap B 5b
 
 " set h (same as n, cursor left) to 'end of word'
-noremap h e
+" noremap h e
 
 " ctags config
 "g:tagbar_ctags_bin=/usr/local/bin/ctags
@@ -246,6 +251,10 @@ map <C-/> :TagbarToggle <CR>
 " ===
 " fix the most annoying bug that coc has
 "silent! au BufEnter,BufRead,BufNewFile * silent! unmap if
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
+
 let g:coc_global_extensions = [
   \ 'coc-actions',
   \ 'coc-css',
@@ -255,7 +264,6 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-lists',
   \ 'coc-python',
-  \ 'coc-snippets',
   \ 'coc-syntax',
   \ 'coc-tasks',
   \ 'coc-todolist',
@@ -391,3 +399,13 @@ autocmd bufnewfile *.py call HeaderPython()
 " NerdTree 配置
 map <C-N> :NERDTreeToggle<CR>
 
+
+" ===
+" === tcomment_vim
+" ===
+nnoremap ci cl
+let g:tcomment_textobject_inlinecomment = ''
+nmap <LEADER>cn g>c
+vmap <LEADER>cn g>
+nmap <LEADER>cu g<c
+vmap <LEADER>cu g<
