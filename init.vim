@@ -1,3 +1,6 @@
+if has("autocmd")
+   au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 " 支持python2 和 python3
 "let g:python_host_prog='/Users/gaoming/.pyenv/bin/python'
@@ -94,6 +97,9 @@ Plug 'denstiny/Terslation'
 "Plug 'SpringHan/Terslation.vim', { 'on': [ 'TerslationToggle', 'TerslationWordTrans' ] }
 " 浮动窗口
 Plug 'voldikss/vim-floaterm'
+
+" 离线文档,需要Zeal支持,不太喜欢,暂不使用
+"Plug 'KabbAmine/zeavim.vim'
 call plug#end()
 
 " Set <LEADER> as <SPACE>, ; as :
@@ -409,3 +415,12 @@ nmap <LEADER>cn g>c
 vmap <LEADER>cn g>
 nmap <LEADER>cu g<c
 vmap <LEADER>cu g<
+
+" ===
+" === zeavim
+" ===
+
+nmap <leader>z <Plug>Zeavim
+vmap <leader>z <Plug>ZVVisSelection
+nmap gz <Plug>ZVOperator
+nmap <leader><leader>z <Plug>ZVKeyDocset
